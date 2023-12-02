@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:joflex/api_services/api_service.dart';
 import 'package:joflex/models/movie.dart';
 import 'package:joflex/widgets/custom_indicator.dart';
-import 'package:joflex/widgets/custom_text_field.dart';
+import 'package:joflex/widgets/custom_text_style.dart';
 import 'package:joflex/widgets/movie_item.dart';
 import '../widgets/page_indicator_icon.dart';
 import '../widgets/show_snackbar.dart';
@@ -97,7 +97,7 @@ class _MoreMoviesState extends State<MoreMovies> {
                             pageNumber--;
                             if (pageNumber == 0) {
                               pageNumber = 1;
-                              showSnackBar(context);
+                              showSnackBar(context, color: Colors.amber, text: 'This is the first page');
                             }
                             future = Api().getMovies(
                                 moviesSection: widget.moviesSection,

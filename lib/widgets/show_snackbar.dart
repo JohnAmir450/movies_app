@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-void showSnackBar(BuildContext context) {
-  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+void showSnackBar(BuildContext context,{required String text,required Color color}) {
+  ScaffoldMessenger.of(context).showSnackBar( SnackBar(
     content: Text(
-      'This is the first page',
-      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+      text,
+      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
     ),
-    backgroundColor: Colors.amber,
+    backgroundColor: color,
   ));
 }

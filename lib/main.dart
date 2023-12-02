@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:joflex/constats.dart';
 import 'package:joflex/views/home_view.dart';
-
+import 'package:joflex/views/login_screen.dart';
 import 'firebase_options.dart';
 
 void main() async{
@@ -16,6 +16,8 @@ void main() async{
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+  
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.dark().copyWith(
           scaffoldBackgroundColor: Colours.scaffoldColor, useMaterial3: true),
       title: 'JoFlex',
-      home: const HomeView(),
+      home: const LoginScreen(),
     );
   }
 }

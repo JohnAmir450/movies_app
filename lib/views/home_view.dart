@@ -5,7 +5,7 @@ import 'package:joflex/views/view_more.dart';
 import '../api_services/api_service.dart';
 import '../widgets/custom_app_bar.dart';
 import '../widgets/custom_indicator.dart';
-import '../widgets/custom_text_field.dart';
+import '../widgets/custom_text_style.dart';
 import '../widgets/top_rated_movies.dart';
 import '../widgets/trending_movie.dart';
 import '../widgets/upcoming_movies.dart';
