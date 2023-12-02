@@ -43,7 +43,7 @@ class DeatailsScreen extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(12.0),
             child: Container(
-              padding: EdgeInsetsDirectional.all(12.0),
+              padding: const EdgeInsetsDirectional.all(12.0),
               decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey),
                   borderRadius: BorderRadius.circular(18)),

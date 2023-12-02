@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "698016856565",
+    "project_id": "joflex-bf5f3",
+    "storage_bucket": "joflex-bf5f3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:698016856565:android:eababa34bf33bcb30188bc",
+        "android_client_info": {
+          "package_name": "com.example.joflex"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRwautsNtcYHGQZgJZH0Ncd8DuTvOzyNg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -5,7 +5,7 @@ import 'package:joflex/widgets/custom_indicator.dart';
 import 'package:joflex/widgets/custom_text_field.dart';
 import 'package:joflex/widgets/movie_item.dart';
 import '../widgets/page_indicator_icon.dart';
-import '../widgets/snackBar.dart';
+import '../widgets/show_snackbar.dart';
 
 class MoreMovies extends StatefulWidget {
   const MoreMovies({
@@ -102,7 +102,7 @@ class _MoreMoviesState extends State<MoreMovies> {
                             future = Api().getMovies(
                                 moviesSection: widget.moviesSection,
                                 page: pageNumber);
-                            print(pageNumber);
+                           
                             setState(() {});
                           },
                           child: const PageIndicatorIcon(
@@ -115,8 +115,7 @@ class _MoreMoviesState extends State<MoreMovies> {
                               future = Api().getMovies(
                                   moviesSection: widget.moviesSection,
                                   page: pageNumber);
-                              print(pageNumber);
-
+                            
                               setState(() {});
                             },
                             child: const PageIndicatorIcon(
