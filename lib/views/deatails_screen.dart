@@ -42,44 +42,49 @@ class DeatailsScreen extends StatelessWidget {
         SliverToBoxAdapter(
           child: Padding(
             padding: const EdgeInsets.all(12.0),
-            child:
-                Container(padding: EdgeInsetsDirectional.all(12.0),
-                  decoration: BoxDecoration(border: Border.all(color: Colors.grey),borderRadius: BorderRadius.circular(18)),
-                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                              const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+            child: Container(
+              padding: EdgeInsetsDirectional.all(12.0),
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey),
+                  borderRadius: BorderRadius.circular(18)),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Overview',
-                      style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Overview',
+                          style: TextStyle(
+                              fontSize: 30, fontWeight: FontWeight.bold),
+                        ),
+                      ],
                     ),
-                  ],
-                              ),
-                              const SizedBox(
-                  height: 16,
-                              ),
-                              Text(
-                  model.overview,
-                  style: GoogleFonts.roboto(
-                      fontSize: 25, fontWeight: FontWeight.w400),
-                              ),
-                              Text(
-                  model.overview,
-                  style: GoogleFonts.roboto(
-                      fontSize: 25, fontWeight: FontWeight.w400),
-                              ),
-                              const SizedBox(
-                  height: 16,
-                              ),
-                              Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    CustomReleasedDateWidget(model: model),
-                    CustomRatingWidget(model: model)
-                  ],
-                              )
-                            ]),
-                ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    Text(
+                      model.overview,
+                      style: GoogleFonts.roboto(
+                          fontSize: 25, fontWeight: FontWeight.w400),
+                    ),
+                    Text(
+                      model.overview,
+                      style: GoogleFonts.roboto(
+                          fontSize: 25, fontWeight: FontWeight.w400),
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        CustomReleasedDateWidget(model: model),
+                        CustomRatingWidget(model: model)
+                      ],
+                    ),
+                  ]),
+            ),
           ),
         )
       ],

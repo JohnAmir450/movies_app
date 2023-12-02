@@ -1,50 +1,131 @@
 import 'package:flutter/material.dart';
 import 'package:joflex/api_services/api_service.dart';
 import 'package:joflex/models/movie.dart';
+import 'package:joflex/widgets/custom_indicator.dart';
 import 'package:joflex/widgets/custom_text_field.dart';
 import 'package:joflex/widgets/movie_item.dart';
+import '../widgets/page_indicator_icon.dart';
+import '../widgets/snackBar.dart';
 
-class MoreMovies extends StatelessWidget {
+class MoreMovies extends StatefulWidget {
   const MoreMovies({
     super.key,
-    required this.moviesSection, required this.appBarTitle,
+    required this.moviesSection,
+    required this.appBarTitle,
   });
   final String moviesSection;
   final String appBarTitle;
 
   @override
+  State<MoreMovies> createState() => _MoreMoviesState();
+}
+
+class _MoreMoviesState extends State<MoreMovies> {
+  Future<List<MovieModel>>? future;
+ late int pageNumber;
+  @override
+  void initState() {
+    pageNumber = 1;
+    future =
+        Api().getMovies(moviesSection: widget.moviesSection, page: pageNumber);
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        
-        title: Text(appBarTitle,style: customTextStyle(),),
+        title: Text(
+          widget.appBarTitle,
+          style: customTextStyle(),
+        ),
         backgroundColor: Colors.transparent,
       ),
       body: FutureBuilder<List<MovieModel>>(
-        future: Api().getMovies(moviesSection: moviesSection, page: 2),
+        future: future,
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
           if (snapshot.hasData) {
             List<MovieModel> data = snapshot.data;
             return Padding(
               padding: const EdgeInsets.all(8.0),
-              child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    childAspectRatio: 0.5,
-                  ),
-                  itemCount: data.length,
-                  itemBuilder: (context, index) => Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: TrendingMovieItem(
-                          model: data[index],
+              child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: Column(
+                  children: [
+                    GridView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3,
+                          childAspectRatio: 0.5,
                         ),
-                      )),
+                        itemCount: data.length,
+                        itemBuilder: (context, index) => Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: TrendingMovieItem(
+                                model: data[index],
+                              ),
+                            )),
+                   const SizedBox(
+                      height: 20,
+                    ),
+                    changingPage(context),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                  ],
+                ),
+              ),
             );
           } else {
-            return CustomScrollView();
+            return const CustomCircularProgressIndicator();
           }
         },
       ),
     );
   }
+
+  Padding changingPage(BuildContext context) {
+    return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            pageNumber--;
+                            if (pageNumber == 0) {
+                              pageNumber = 1;
+                              showSnackBar(context);
+                            }
+                            future = Api().getMovies(
+                                moviesSection: widget.moviesSection,
+                                page: pageNumber);
+                            print(pageNumber);
+                            setState(() {});
+                          },
+                          child: const PageIndicatorIcon(
+                            icon: Icons.arrow_back_ios,
+                          ),
+                        ),
+                        GestureDetector(
+                            onTap: () {
+                              pageNumber++;
+                              future = Api().getMovies(
+                                  moviesSection: widget.moviesSection,
+                                  page: pageNumber);
+                              print(pageNumber);
+
+                              setState(() {});
+                            },
+                            child: const PageIndicatorIcon(
+                              icon: Icons.arrow_forward_ios,
+                            )),
+                      ],
+                    ),
+                  );
+  }
 }
+
+

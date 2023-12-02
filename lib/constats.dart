@@ -7,3 +7,4 @@ class Colours{
 }
 
 const String imageBasic='https://image.tmdb.org/t/p/w500';
+
