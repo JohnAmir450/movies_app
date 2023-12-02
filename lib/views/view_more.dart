@@ -22,7 +22,7 @@ class MoreMovies extends StatefulWidget {
 
 class _MoreMoviesState extends State<MoreMovies> {
   Future<List<MovieModel>>? future;
- late int pageNumber;
+  late int pageNumber;
   @override
   void initState() {
     pageNumber = 1;
@@ -35,6 +35,11 @@ class _MoreMoviesState extends State<MoreMovies> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child:const Icon(Icons.arrow_back_ios_new)),
         title: Text(
           widget.appBarTitle,
           style: customTextStyle(),
@@ -67,7 +72,7 @@ class _MoreMoviesState extends State<MoreMovies> {
                                 model: data[index],
                               ),
                             )),
-                   const SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     changingPage(context),
@@ -88,43 +93,40 @@ class _MoreMoviesState extends State<MoreMovies> {
 
   Padding changingPage(BuildContext context) {
     return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            pageNumber--;
-                            if (pageNumber == 0) {
-                              pageNumber = 1;
-                              showSnackBar(context, color: Colors.amber, text: 'This is the first page');
-                            }
-                            future = Api().getMovies(
-                                moviesSection: widget.moviesSection,
-                                page: pageNumber);
-                           
-                            setState(() {});
-                          },
-                          child: const PageIndicatorIcon(
-                            icon: Icons.arrow_back_ios,
-                          ),
-                        ),
-                        GestureDetector(
-                            onTap: () {
-                              pageNumber++;
-                              future = Api().getMovies(
-                                  moviesSection: widget.moviesSection,
-                                  page: pageNumber);
-                            
-                              setState(() {});
-                            },
-                            child: const PageIndicatorIcon(
-                              icon: Icons.arrow_forward_ios,
-                            )),
-                      ],
-                    ),
-                  );
+      padding: const EdgeInsets.symmetric(horizontal: 12.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          GestureDetector(
+            onTap: () {
+              pageNumber--;
+              if (pageNumber == 0) {
+                pageNumber = 1;
+                showSnackBar(context,
+                    color: Colors.amber, text: 'This is the first page');
+              }
+              future = Api().getMovies(
+                  moviesSection: widget.moviesSection, page: pageNumber);
+
+              setState(() {});
+            },
+            child: const PageIndicatorIcon(
+              icon: Icons.arrow_back_ios,
+            ),
+          ),
+          GestureDetector(
+              onTap: () {
+                pageNumber++;
+                future = Api().getMovies(
+                    moviesSection: widget.moviesSection, page: pageNumber);
+
+                setState(() {});
+              },
+              child: const PageIndicatorIcon(
+                icon: Icons.arrow_forward_ios,
+              )),
+        ],
+      ),
+    );
   }
 }
-
-

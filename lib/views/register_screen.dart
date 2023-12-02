@@ -1,4 +1,4 @@
-// ignore_for_file: use_build_context_synchronously
+// ignore_for_file: use_build_context_synchronously, unused_local_variable
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -114,10 +114,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           isLoading = true;
                           setState(() {});
                           await registerUser();
-                          Navigator.push(
+                          Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const HomeView()));
+                                  builder: (context) => const HomeView()),
+                              (route) => false);
                           showSnackBar(context,
                               text: 'Email created successfully',
                               color: Colors.green);

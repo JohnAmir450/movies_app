@@ -1,4 +1,4 @@
-// ignore_for_file: use_build_context_synchronously
+// ignore_for_file: use_build_context_synchronously, unused_local_variable
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -95,10 +95,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           isLoading = true;
                           setState(() {});
                           await userLogin();
-                          Navigator.push(
+                          Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const HomeView()));
+                                  builder: (context) => const HomeView()),
+                              (route) => false);
                           showSnackBar(context,
                               text: 'Logged in successfully',
                               color: Colors.green);
@@ -127,15 +128,15 @@ class _LoginScreenState extends State<LoginScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('Don\'t have an account? '),
+                const Text('Don\'t have an account? '),
                 GestureDetector(
                     onTap: () {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => RegisterScreen()));
+                              builder: (context) => const RegisterScreen()));
                     },
-                    child: Text(
+                    child: const Text(
                       'Register Now',
                       style: TextStyle(color: Colors.red),
                     ))
@@ -150,6 +151,5 @@ class _LoginScreenState extends State<LoginScreen> {
   Future<void> userLogin() async {
     UserCredential user = await FirebaseAuth.instance
         .signInWithEmailAndPassword(email: email!, password: password!);
-   }
- 
+  }
 }

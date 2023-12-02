@@ -1,7 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:joflex/constats.dart';
-import 'package:joflex/views/home_view.dart';
 import 'package:joflex/views/login_screen.dart';
 import 'firebase_options.dart';
 
