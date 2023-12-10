@@ -9,6 +9,7 @@ import 'package:joflex/widgets/custom_bottom.dart';
 import 'package:joflex/widgets/show_snackbar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../constats.dart';
 import '../widgets/custom_text_field.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -102,7 +103,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   builder: (context) => const HomeView()),
                               (route) => false);
                               SharedPreferences sharedPreferences=await SharedPreferences.getInstance();
-                              sharedPreferences.setBool('isLoggedIN', true);
+                              sharedPreferences.setBool(isLoggedInSharedData, true);
                           showSnackBar(context,
                               text: 'Logged in successfully',
                               color: Colors.green);

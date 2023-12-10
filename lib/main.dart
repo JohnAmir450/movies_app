@@ -12,7 +12,7 @@ void main() async{
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  bool isLoggedIn= sharedPreferences.getBool('isLoggedIN')??false;
+  bool isLoggedIn= sharedPreferences.getBool(isLoggedInSharedData)??false;
   runApp( MyApp(isLoggedIn: isLoggedIn,));
 }
 

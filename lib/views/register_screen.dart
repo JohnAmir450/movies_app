@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:joflex/widgets/show_snackbar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../constats.dart';
 import '../widgets/custom_bottom.dart';
 import '../widgets/custom_text_field.dart';
 import 'home_view.dart';
@@ -121,7 +122,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   builder: (context) => const HomeView()),
                               (route) => false);
                               SharedPreferences sharedPreferences=await SharedPreferences.getInstance();
-                              sharedPreferences.setBool('isLoggedIN', true);
+                              sharedPreferences.setBool(isLoggedInSharedData, true);
                           showSnackBar(context,
                               text: 'Email created successfully',
                               color: Colors.green);

@@ -21,7 +21,7 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBat(),
+      appBar: customAppBat(context),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Padding(
