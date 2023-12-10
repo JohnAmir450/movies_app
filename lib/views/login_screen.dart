@@ -3,10 +3,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:joflex/constats.dart';
 import 'package:joflex/views/home_view.dart';
 import 'package:joflex/views/register_screen.dart';
 import 'package:joflex/widgets/custom_bottom.dart';
 import 'package:joflex/widgets/show_snackbar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../widgets/custom_text_field.dart';
 
@@ -100,6 +102,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               MaterialPageRoute(
                                   builder: (context) => const HomeView()),
                               (route) => false);
+                              SharedPreferences sharedPreferences=await SharedPreferences.getInstance();
+                              sharedPreferences.setBool('isLoggedIN', true);
                           showSnackBar(context,
                               text: 'Logged in successfully',
                               color: Colors.green);
