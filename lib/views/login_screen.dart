@@ -3,7 +3,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:joflex/constats.dart';
 import 'package:joflex/views/home_view.dart';
 import 'package:joflex/views/register_screen.dart';
 import 'package:joflex/widgets/custom_bottom.dart';
